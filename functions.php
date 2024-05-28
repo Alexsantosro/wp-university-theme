@@ -16,7 +16,11 @@ function university_features() {
 
 add_action('after_setup_theme', 'university_features');
 
+
+
+//Personlização da querie do wordpress
 function university_adjust_queries($query) {
+  //Personlização da querie do archive do CPT Event
   if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
     $today = date('Ymd');
     $query->set('meta_key', 'event_date');
@@ -31,6 +35,18 @@ function university_adjust_queries($query) {
               )
             ));
   }
+
+  //Personlização da querie do archive do CPT Program
+  if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
+   $query->set('orderby', 'title'); //Olha dentro da query e ordena os itens por titulo.
+   $query->set('order', 'ASC');
+   $query->set('posts_per_page', -1);
+  }
+
+
+
+
+
 }
 
 add_action('pre_get_posts', 'university_adjust_queries');

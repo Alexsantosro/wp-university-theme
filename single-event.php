@@ -20,7 +20,23 @@
       </div>
 
       <div class="generic-content"><?php the_content(); ?></div>
+      <?php
 
+      $relatedPrograms = get_field('related_programs'); //Essa váriavel recebe o custom field Related Programs do ACF, que é um array 
+      
+      if ($relatedPrograms) {
+      
+      echo '<hr class="section-break">';
+      echo '<h2 class="headline headline--medium">Related Program(s)</h2>';
+      echo '<ul class="link-list min-list">';
+      
+      foreach($relatedPrograms as $program) { ?> <!--Cade item no array da váriavel $relatedPrograms é um wordpress post object-->
+        <li><a href="<?php echo get_the_permalink($program)?>"><?php echo get_the_title($program)?></a></li>
+      <?php }
+
+      echo "</ul>";
+      } 
+      ?>
     </div>
     
 
