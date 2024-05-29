@@ -10,13 +10,15 @@ function university_files() {
 
 add_action('wp_enqueue_scripts', 'university_files');
 
-function university_features() {
+function university_features() { //Função que ativa recursos do wordpress
   add_theme_support('title-tag');
+  add_theme_support('post-thumbnails'); //Ativa as thumbnails nos blog posts.
+  add_image_size('professorLandscape', 400, 260, true); //Argumentos - a: Nick name image size, b: wide size, c: tall size, d: Crop or not
+  add_image_size('professorPortrait', 480, 650, true);
+
 }
 
-add_action('after_setup_theme', 'university_features');
-
-
+add_action('after_setup_theme', 'university_features'); //Ativa recursos do wordpress.
 
 //Personlização da querie do wordpress
 function university_adjust_queries($query) {
@@ -35,18 +37,12 @@ function university_adjust_queries($query) {
               )
             ));
   }
-
   //Personlização da querie do archive do CPT Program
   if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
    $query->set('orderby', 'title'); //Olha dentro da query e ordena os itens por titulo.
    $query->set('order', 'ASC');
    $query->set('posts_per_page', -1);
   }
-
-
-
-
-
 }
 
 add_action('pre_get_posts', 'university_adjust_queries');
