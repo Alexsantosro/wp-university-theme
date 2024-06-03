@@ -1,0 +1,9 @@
+Javascript Wordpress.
+
+1 - Criar a pasta de nome "SRC"
+2 - Criar o arquivo index.JS
+3 - Criar o arquivo packege.json, que passa as instruções para a instalação dos módulos do node.
+4 - Instalar o Node Js no computador
+5 - Abrir o terminal e verificar se o node está instalado com o comento 'node --version'
+6 - Instalar os modulos com o comando 'npm install'
+7 - Iniciar o node com o comando 'npm run start'
